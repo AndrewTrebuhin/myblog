@@ -1,12 +1,16 @@
 source 'https://rubygems.org'
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.1.4'
 
-group :development do
-  # Use sqlite3 as the database for Active Record
+group :development, :test do
   gem 'sqlite3'
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'selenium-webdriver'
+  gem 'capybara'
 end
 
 # Use SCSS for stylesheets
@@ -46,4 +50,3 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
-

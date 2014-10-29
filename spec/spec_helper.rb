@@ -1,4 +1,5 @@
 require 'capybara'
+require 'support/utilities'
 
 RSpec.configure do |config|
 

@@ -1,6 +1,7 @@
 require 'capybara'
 require 'support/utilities'
 
+
 RSpec.configure do |config|
 
   config.expect_with :rspec do |expectations|

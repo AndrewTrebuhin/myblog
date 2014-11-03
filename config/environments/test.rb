@@ -38,4 +38,7 @@ Rails.application.configure do
   # config.action_view.raise_on_missing_translations = true
 
   config.allow_concurrency = false
+
+  # Speed up tests by lowering bcrypt's cost function.
+  ActiveModel::SecurePassword.min_cost = true
 end

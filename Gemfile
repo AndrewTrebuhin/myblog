@@ -12,6 +12,8 @@ group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
   gem 'database_cleaner'
+  gem 'factory_girl_rails'
+  gem 'faker'
 end
 
 # Use SCSS for stylesheets

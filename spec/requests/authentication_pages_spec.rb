@@ -52,12 +52,15 @@ RSpec.describe "AuthenticationPages", :type => :request do
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
 
+      describe "shoud have not links" do
+        it { should_not have_link('Profile',  href: user_path(user)) }
+        it { should_not have_link('Settings', href: edit_user_path(user)) }
+      end
+
       describe "when attempting to visit a protected page" do
         before do
           visit edit_user_path(user)
-          fill_in "Email", with: user.email
-          fill_in "Password", with: user.password
-          click_button "Sign in"
+          sign_in user
         end
 
         describe "after signing in" do
@@ -76,6 +79,16 @@ RSpec.describe "AuthenticationPages", :type => :request do
         describe "submitting a DELETE request to the User#destroy" do
           before { delete user_path(user) }
           specify { expect(response).to redirect_to(root_url) }
+        end
+      end
+
+      describe "as admin user" do
+        let(:admin_user) { FactoryGirl.create(:admin) }
+
+        before { sign_in admin_user }
+
+        it "should be admin" do
+          expect(admin_user).to be_admin
         end
       end
 

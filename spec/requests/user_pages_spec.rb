@@ -42,6 +42,11 @@ RSpec.describe "UserPages", :type => :request do
             click_link('delete', match: :first)
           end.to change(User, :count).by(-1)
         end
+        it "should not be able to delete himself" do
+          expect do
+            delete user_path(admin)
+          end.to change(User, :count).by(0)
+        end
           it { should_not have_link('delete', href: user_path(admin)) }
       end
     end
@@ -74,7 +79,7 @@ RSpec.describe "UserPages", :type => :request do
         fill_in "Login",        with: "Example user"
         fill_in "Email",        with: "user@example.com"
         fill_in "Password",     with: "password"
-        fill_in "Password confirmation", with: "password"
+        fill_in "Confirm password", with: "password"
       end
 
       it "should create a user" do

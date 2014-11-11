@@ -30,6 +30,11 @@ RSpec.describe "StaticPages", :type => :request do
           expect(page).to have_selector("li##{item.id}", text: item.content)
         end
       end
+
+      it "should have count of microposts" do
+        expect(page).to have_selector("span",
+                                      text: "#{user.feed.count} micropost")
+      end
     end
   end
 
